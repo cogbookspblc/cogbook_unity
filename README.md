@@ -19,7 +19,7 @@ Run the below command in edxapp environment
 pip install git+https://github.com/cogbookspblc/cogbook_unity
 ```
 #### Step 5:
-Add ```cogbook_unity```  to your ```INSTALLED_APPS``` in ```cms/common.py``` or ```cms.env.json```
+Add ```cogbook_unity```  to your ```INSTALLED_APPS``` in ```cms/envs/common.py``` or ```cms.env.json```
 #### Step 6:
 Add ```url(r'^cogbook_unity', include('cogbook_unity.urls')),```  in your ```cms/urls.py```
 #### Step 7:
