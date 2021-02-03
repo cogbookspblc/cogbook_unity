@@ -23,7 +23,7 @@ Add cogbook_unity  to your INSTALLED_APPS in cms/common.py or cms.env.json
 #### Step 6:
 Add url(r'^cogbook_unity', include('cogbook_unity.urls')),  in your cms/urls.py
 #### Step 7:
-Apply the following changes to the file ```sh/edx/app/edxapp/edx-platform/openedx/core/djangoapps/oauth_dispatch/views.py``` in your environment
+Apply the following changes to the file ```/edx/app/edxapp/edx-platform/openedx/core/djangoapps/oauth_dispatch/views.py``` in your environment
 
 ```sh
 diff --git a/openedx/core/djangoapps/oauth_dispatch/views.py b/openedx/core/djangoapps/oauth_dispatch/views.py
