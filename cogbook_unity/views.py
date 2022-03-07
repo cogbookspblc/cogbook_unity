@@ -1,7 +1,7 @@
 """
 View for Control Panel application
 """
-from util.json_request import JsonResponse, expect_json
+from common.djangoapps.util.json_request import JsonResponse, expect_json
 
 from django.views.generic import View
 from django.http import Http404, HttpResponse, HttpResponseBadRequest
@@ -15,14 +15,14 @@ from xblock.exceptions import NoSuchHandlerError
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from models.settings.course_grading import CourseGradingModel
+from cms.djangoapps.models.settings.course_grading import CourseGradingModel
 
 
 from openedx.core.lib.api.view_utils import DeveloperErrorViewMixin, view_auth_classes
 
-from contentstore.views.helpers import create_xblock, usage_key_with_run
-from contentstore.views.item import StudioEditModuleRuntime
-from contentstore.utils import get_xblock_aside_instance
+from cms.djangoapps.contentstore.views.helpers import create_xblock, usage_key_with_run
+from cms.djangoapps.contentstore.views.item import StudioEditModuleRuntime
+from cms.djangoapps.contentstore.utils import get_xblock_aside_instance
 
 
 from xmodule.modulestore.django import modulestore
@@ -66,7 +66,7 @@ class UnityView(DeveloperErrorViewMixin, APIView):
             if 'graderType' in request.data:
                 CourseGradingModel.update_section_grader_type(modulestore().get_item(created_block.location), request.data['graderType'], request.user)
             return JsonResponse(
-                {'locator': unicode(created_block.location), 'courseKey': unicode(created_block.location.course_key)}
+                {'locator': str(created_block.location), 'courseKey': str(created_block.location.course_key)}
             )
 
 
@@ -118,6 +118,3 @@ class LTIView(DeveloperErrorViewMixin, APIView):
         modulestore().update_item(descriptor, request.user.id, asides=asides)
 
         return webob_to_django_response(resp)
-
-
-
